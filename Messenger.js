@@ -15,11 +15,23 @@ for (let person of discussion){
     person.addEventListener("click", function(event){
         openDiscussion(person)
     })
+    person.addEventListener("mousedown", function(event){
+        person.style.backgroundColor = "#aaaa"
+    })
+    person.addEventListener("mouseup", function(event){
+        person.style.backgroundColor = "#ffff"
+    })
 }
 for (let person of onlineUsers){
     console.log(person)
     person.addEventListener("click", function(event){
         openDiscussionOnline(person)
+    })
+    person.addEventListener("mousedown", function(event){
+        person.style.backgroundColor = "#aaaa"
+    })
+    person.addEventListener("mouseup", function(event){
+        person.style.backgroundColor = "#ffff"
     })
 }
 img_send.addEventListener("click", sendMsg)
@@ -51,6 +63,8 @@ function sendMsg(){
         msg.innerHTML = inputText
         messages.appendChild(msg)
         let hismsgcont = his_msg_cont.cloneNode(true)
+        let hismsg = hismsgcont.querySelector(".his_message")
+        hismsg.innerHTML = inputText
         messages.appendChild(hismsgcont)
         ecrire_msg.value = ""
     }
@@ -63,6 +77,7 @@ function scrollToBottom() {
 function openDiscussion(person){
     let user_Img = person.querySelector('.user_img');
     let user_Name = person.querySelector('.user_name');
+    let mymsg = document.querySelector('.my_message');
     his_msg_textDisc = person.querySelector('.user_msg');
     userImg.src = user_Img.src
     hisMsgImg.src = user_Img.src
@@ -74,10 +89,18 @@ function openDiscussion(person){
         }
     }
     userName.textContent = user_Name.textContent
+    let index = userName.textContent.indexOf(' ')
+    let subusername =  userName.textContent
+    if ( index !== -1){
+        subusername = subusername.substring(0, index)
+    }
+    mymsg.innerHTML = "Bonjour " + subusername
+
 }
 function openDiscussionOnline(person){
     let user_Img = person.querySelector('.user_img');
     let user_Name = person.querySelector('.user_name');
+    let mymsg = document.querySelector('.my_message');
     his_msg_textDisc = document.querySelectorAll('.username_msg > .user_msg_container');
     for (DiscMsg of his_msg_textDisc){
         if (DiscMsg.querySelector('.user_name').textContent == user_Name.textContent)
@@ -92,4 +115,10 @@ function openDiscussionOnline(person){
         }
     }
     userName.textContent = user_Name.textContent
+    let index = userName.textContent.indexOf(' ')
+    let subusername =  userName.textContent
+    if ( index !== -1){
+        subusername = subusername.substring(0, index)
+    }
+    mymsg.innerHTML = "Bonjour " + subusername
 }

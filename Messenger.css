@@ -145,6 +145,7 @@ border-radius: 10px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    overflow: hidden;
 }
 #all_discussions > .discussion > .username_msg{
     display: flex;
@@ -153,10 +154,18 @@ border-radius: 10px;
     width: 80%;
     margin-top: 5px;
 }
+#all_discussions > .discussion > .username_msg > .user_msg_container > .user_name{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 #all_discussions > .discussion > .username_msg > .user_msg_container > .user_msg{
     font-family: 'Arial';
     margin-top: -8px;
-    margin-bottom: -5px;;
+    margin-bottom: -5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 #all_discussions > .discussion > .time{
     display: flex;
